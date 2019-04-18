@@ -1,0 +1,31 @@
+{
+  "name": "laravel-frontend-presets/inertiajs",
+  "description": "A Laravel frontend preset to get you up and running with Inertia.js",
+  "keywords": ["laravel", "preset", "inertiajs"],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Michael Dyrynda",
+      "email": "michael@dyrynda.com.au"
+    }
+  ],
+  "require": {
+    "laravel/framework": "^5.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "LaravelFrontendPresets\\InertiaJsPreset\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "LaravelFrontendPresets\\InertiaJsPreset\\InertiaJsPresetServiceProvider"
+      ]
+    }
+  },
+  "require-dev": {
+    "orchestra/testbench": "^3.8"
+  }
+}
