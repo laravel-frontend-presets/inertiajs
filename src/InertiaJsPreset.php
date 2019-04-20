@@ -15,6 +15,7 @@ class InertiaJsPreset extends Preset
         static::updateWelcomePage();
         static::updateGitignore();
         static::scaffoldComponents();
+        static::scaffoldRoutes();
         static::removeNodeModules();
     }
 
@@ -60,8 +61,8 @@ class InertiaJsPreset extends Preset
         (new Filesystem)->copyDirectory(__DIR__.'/inertiajs-stubs/resources/js/Pages', resource_path('js'));
     }
 
-    protected static function compileControllerStub()
+    protected static function scaffoldRoutes()
     {
-        //
+        copy(__DIR__.'/inertiajs-stubs/routes/web.php', base_path('routes/web.php'));
     }
 }
