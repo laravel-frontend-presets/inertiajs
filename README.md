@@ -1,5 +1,8 @@
 # Laravel Frontend preset for Inertia.js
 
+> **Note:** The Inertia.js project is in the very early stages of development and IS NOT yet intended for public consumption.
+> As such, the state of this preset is in flux and may change significantly to accommodate changes in Inertia.js.
+
 A Laravel front-end scaffolding preset for [Inertia.js](https://github.com/inertiajs/inertia).
 
 This preset scaffolding removes the manual steps required to get up and running with Inertia.js.
