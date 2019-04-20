@@ -13,6 +13,7 @@ class InertiaJsPreset extends Preset
         static::updatePackages();
         static::updateBootstrapping();
         static::updateWelcomePage();
+        static::updateGitignore();
         static::scaffoldComponents();
         static::removeNodeModules();
     }
@@ -41,6 +42,15 @@ class InertiaJsPreset extends Preset
         (new Filesystem)->delete(resource_path('views/welcome.blade.php'));
 
         copy(__DIR__.'/inertiajs-stubs/resources/views/app.blade.php', resource_path('views/app.blade.php'));
+    }
+
+    protected static function updateGitignore()
+    {
+        file_put_contents(
+            base_path('.gitignore'),
+            file_get_contents(__DIR__.'/inertiajs-stubs/gitignore'),
+            FILE_APPEND
+        );
     }
 
     protected static function scaffoldComponents()
