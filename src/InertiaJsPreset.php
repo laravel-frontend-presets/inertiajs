@@ -56,9 +56,13 @@ class InertiaJsPreset extends Preset
 
     protected static function scaffoldComponents()
     {
-        (new Filesystem)->copyDirectory(__DIR__.'/inertiajs-stubs/resources/js/Shared', resource_path('js'));
+        tap(new Filesystem, function ($fs) {
+            $fs->deleteDirectory(resource_path('js/components'));
 
-        (new Filesystem)->copyDirectory(__DIR__.'/inertiajs-stubs/resources/js/Pages', resource_path('js'));
+            $fs->copyDirectory(__DIR__.'/inertiajs-stubs/resources/js/Shared', resource_path('js/Shared'));
+
+            $fs->copyDirectory(__DIR__.'/inertiajs-stubs/resources/js/Pages', resource_path('js/Pages'));
+        });
     }
 
     protected static function scaffoldRoutes()
