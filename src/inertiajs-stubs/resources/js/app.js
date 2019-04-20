@@ -1,3 +1,5 @@
+require('./bootstrap')
+
 import Inertia from 'inertia-vue'
 import Vue from 'vue'
 
