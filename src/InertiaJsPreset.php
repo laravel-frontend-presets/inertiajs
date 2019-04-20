@@ -20,11 +20,11 @@ class InertiaJsPreset extends Preset
     protected static function updatePackageArray(array $packages)
     {
         return array_merge([
-            'inertiajs/inertia' => 'latest',
-            'inertiajs/inertia-vue' => 'latest',
-        ], Arr::except($packages, [
-            'jquery',
-        ]));
+            '@babel/plugin-syntax-dynamic-import' => '^7.2.0',
+            'inertia' => 'github:inertiajs/inertia',
+            'inertia-vue' => 'inertiajs/inertia-vue',
+            'vue-template-compiler' => '^2.6.10',
+        ], $packages);
     }
 
     protected static function updateBootstrapping()
