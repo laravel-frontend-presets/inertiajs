@@ -3,6 +3,8 @@ require('./bootstrap')
 import Inertia from 'inertia-vue'
 import Vue from 'vue'
 
+Vue.use(Inertia)
+
 let app = document.getElementById('app')
 
 new Vue({
