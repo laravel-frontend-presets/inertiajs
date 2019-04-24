@@ -19,7 +19,7 @@
                 <inertia-link class="nav-link" href="/contact">Contact</inertia-link>
               </li>
             </ul>
-          
+
           </div>
         </div>
       </nav>
@@ -37,13 +37,3 @@
     </main>
   </div>
 </template>
-
-<script>
-import { InertiaLink } from 'inertia-vue'
-
-export default {
-  components: {
-    InertiaLink,
-  },
-}
-</script>
