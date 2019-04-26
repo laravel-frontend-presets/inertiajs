@@ -3,14 +3,16 @@ require('./bootstrap')
 import Inertia from 'inertia-vue'
 import Vue from 'vue'
 
+Vue.use(Inertia)
+
 let app = document.getElementById('app')
 
 new Vue({
   render: h => h(Inertia, {
     props: {
       initialPage: JSON.parse(app.dataset.page),
-      resolveComponent: (component) => {
-        return import(`@/Pages/${component}`).then(module => module.default)
+      resolveComponent: (name) => {
+        return import(`@/Pages/${name}`).then(module => module.default)
       },
     },
   }),
