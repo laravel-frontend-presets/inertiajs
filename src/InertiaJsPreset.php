@@ -36,6 +36,9 @@ class InertiaJsPreset extends Preset
         copy(__DIR__.'/inertiajs-stubs/webpack.mix.js', base_path('webpack.mix.js'));
 
         copy(__DIR__.'/inertiajs-stubs/resources/js/app.js', resource_path('js/app.js'));
+
+        copy(__DIR__.'/inertiajs-stubs/resources/sass/app.scss', resource_path('sass/app.scss'));
+        copy(__DIR__.'/inertiajs-stubs/resources/sass/_nprogress.scss', resource_path('sass/_nprogress.scss'));
     }
 
     protected static function updateWelcomePage()
