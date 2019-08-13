@@ -7,7 +7,7 @@ mix.js('resources/js/app.js', 'public/js')
      output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
      resolve: {
        alias: {
-         'vue$': 'vue/dist/vue.runtime.js',
+         'vue$': 'vue/dist/vue.runtime.esm.js',
          '@': path.resolve('resources/js'),
        },
      },
