@@ -3,7 +3,8 @@ const path = require('path')
 
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css')
-     output: { chunkFilename: 'js/[name].[contenthash].js' },
+   .webpackConfig({
+     output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
      resolve: {
        alias: {
          'vue$': 'vue/dist/vue.runtime.js',
