@@ -31,7 +31,6 @@ class InertiaJsPreset extends Preset
 
     protected static function updateBootstrapping()
     {
-        copy(__DIR__.'/inertiajs-stubs/.babelrc', base_path('.babelrc'));
         copy(__DIR__.'/inertiajs-stubs/webpack.mix.js', base_path('webpack.mix.js'));
 
         copy(__DIR__.'/inertiajs-stubs/resources/js/app.js', resource_path('js/app.js'));

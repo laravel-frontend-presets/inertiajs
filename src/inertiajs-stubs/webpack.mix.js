@@ -11,3 +11,6 @@ mix.sass('resources/sass/app.scss', 'public/css')
        },
      },
    })
+   .babelConfig({
+       plugins: ['@babel/plugin-syntax-dynamic-import']
+   })
