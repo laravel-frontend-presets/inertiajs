@@ -23,8 +23,8 @@ class InertiaJsPreset extends Preset
     {
         return array_merge([
             '@babel/plugin-syntax-dynamic-import' => '^7.2.0',
-            '@inertiajs/inertia' => '^0.1',
-            '@inertiajs/inertia-vue' => '^0.1',
+            '@inertiajs/inertia' => '^0.1.0',
+            '@inertiajs/inertia-vue' => '^0.1.0',
             'vue-template-compiler' => '^2.6.10',
         ], $packages);
     }
