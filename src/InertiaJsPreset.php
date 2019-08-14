@@ -23,16 +23,14 @@ class InertiaJsPreset extends Preset
     {
         return array_merge([
             '@babel/plugin-syntax-dynamic-import' => '^7.2.0',
-            'inertia' => 'github:inertiajs/inertia',
-            'inertia-vue' => 'inertiajs/inertia-vue',
+            '@inertiajs/inertia' => '^0.1.0',
+            '@inertiajs/inertia-vue' => '^0.1.0',
             'vue-template-compiler' => '^2.6.10',
         ], $packages);
     }
 
     protected static function updateBootstrapping()
     {
-        copy(__DIR__.'/inertiajs-stubs/.babelrc', base_path('.babelrc'));
-
         copy(__DIR__.'/inertiajs-stubs/webpack.mix.js', base_path('webpack.mix.js'));
 
         copy(__DIR__.'/inertiajs-stubs/resources/js/app.js', resource_path('js/app.js'));
