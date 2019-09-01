@@ -11,7 +11,7 @@
     }
   ],
   "require": {
-    "laravel/framework": "^5.8",
+    "laravel/framework": "^5.8|^6.0",
     "inertiajs/inertia-laravel": "^0.1"
   },
   "require-dev": {
