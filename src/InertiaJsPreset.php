@@ -2,15 +2,22 @@
 
 namespace LaravelFrontendPresets\InertiaJsPreset;
 
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\Foundation\Console\Presets\Preset;
 use Illuminate\Support\Arr;
+use Illuminate\Filesystem\Filesystem;
+use Symfony\Component\Process\Process;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Foundation\Console\Presets\Preset;
 
 class InertiaJsPreset extends Preset
 {
-    public static function install()
+    private static $command;
+
+    public static function install($command)
     {
+        static::$command = $command;
+
         static::updatePackages();
+        static::installBootstrapDefault();
         static::updateBootstrapping();
         static::updateWelcomePage();
         static::updateGitignore();
@@ -25,6 +32,7 @@ class InertiaJsPreset extends Preset
             '@babel/plugin-syntax-dynamic-import' => '^7.2.0',
             '@inertiajs/inertia' => '^0.1.0',
             '@inertiajs/inertia-vue' => '^0.1.0',
+            'vue' => '^2.5.17',
             'vue-template-compiler' => '^2.6.10',
         ], $packages);
     }
@@ -69,5 +77,22 @@ class InertiaJsPreset extends Preset
     protected static function scaffoldRoutes()
     {
         copy(__DIR__.'/inertiajs-stubs/routes/web.php', base_path('routes/web.php'));
+    }
+
+    protected static function installBootstrapDefault()
+    {
+        if (! file_exists(base_path('composer.json'))) {
+            return;
+        }
+
+        tap(new Process('composer require --dev laravel/ui=^1.0', base_path()), function ($process) {
+            $process->run();
+
+            Artisan::call('preset bootstrap', [], static::$command->getOutput());
+        });
+
+        tap(new Process('composer remove --dev laravel/ui', base_path()), function ($process) {
+            $process->run();
+        });
     }
 }
