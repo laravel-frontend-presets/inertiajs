@@ -18,6 +18,7 @@ class InertiaJsPreset extends Preset
 
         static::updatePackages();
         static::installBootstrapDefault();
+        static::updateComposer(false);
         static::updateBootstrapping();
         static::updateWelcomePage();
         static::updateGitignore();
@@ -34,6 +35,13 @@ class InertiaJsPreset extends Preset
             '@inertiajs/inertia-vue' => '^0.1.0',
             'vue' => '^2.5.17',
             'vue-template-compiler' => '^2.6.10',
+        ], $packages);
+    }
+
+    protected static function updateComposerArray(array $packages)
+    {
+        return array_merge([
+            'inertiajs/inertia-laravel' => '^0.1',
         ], $packages);
     }
 
@@ -94,5 +102,28 @@ class InertiaJsPreset extends Preset
         tap(new Process('composer remove --dev laravel/ui', base_path()), function ($process) {
             $process->run();
         });
+    }
+
+    protected static function updateComposer($dev = true)
+    {
+        if (! file_exists(base_path('composer.json'))) {
+            return;
+        }
+
+        $configurationKey = $dev ? 'require-dev' : 'require';
+
+        $packages = json_decode(file_get_contents(base_path('composer.json')), true);
+
+        $packages[$configurationKey] = static::updateComposerArray(
+            array_key_exists($configurationKey, $packages) ? $packages[$configurationKey] : [],
+            $configurationKey
+        );
+
+        ksort($packages[$configurationKey]);
+
+        file_put_contents(
+            base_path('composer.json'),
+            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT).PHP_EOL
+        );
     }
 }
