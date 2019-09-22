@@ -12,12 +12,8 @@ use Symfony\Component\Process\Process;
 
 class InertiaJsPreset extends Preset
 {
-    private static $command;
-
-    public static function install($command)
+    public static function install()
     {
-        static::$command = $command;
-
         static::updatePackages();
         static::updateBootstrapping();
         static::updateComposer(false);
