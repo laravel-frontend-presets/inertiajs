@@ -2,11 +2,13 @@
 
 namespace LaravelFrontendPresets\InertiaJsPreset;
 
-use Illuminate\Support\Arr;
+use Illuminate\Container\Container;
 use Illuminate\Filesystem\Filesystem;
-use Symfony\Component\Process\Process;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Foundation\Console\Presets\Preset;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Str;
+use Symfony\Component\Process\Process;
 
 class InertiaJsPreset extends Preset
 {
