@@ -17,8 +17,10 @@ class InertiaJsPreset extends Preset
         static::$command = $command;
 
         static::updatePackages();
-        static::updateComposer(false);
         static::updateBootstrapping();
+        static::updateComposer(false);
+        static::publishServiceProvider();
+        static::registerInertiaServiceProvider();
         static::updateWelcomePage();
         static::updateGitignore();
         static::scaffoldComponents();
@@ -107,5 +109,44 @@ class InertiaJsPreset extends Preset
             base_path('composer.json'),
             json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT).PHP_EOL
         );
+    }
+
+    public static function publishServiceProvider()
+    {
+        copy(
+            __DIR__.'/inertiajs-stubs/providers/InertiaJsServiceProvider.stub',
+            app_path('Providers/InertiaJsServiceProvider.php')
+        );
+    }
+
+    public static function registerInertiaServiceProvider()
+    {
+        $namespace = Str::replaceLast('\\', '', Container::getInstance()->getNamespace());
+
+        $appConfig = file_get_contents(config_path('app.php'));
+
+        if (Str::contains($appConfig, $namespace.'\\Providers\\InertiaJsServiceProvider::class')) {
+            return;
+        }
+
+        $lineEndingCount = [
+            "\r\n" => substr_count($appConfig, "\r\n"),
+            "\r" => substr_count($appConfig, "\r"),
+            "\n" => substr_count($appConfig, "\n"),
+        ];
+
+        $eol = array_keys($lineEndingCount, max($lineEndingCount))[0];
+
+        file_put_contents(config_path('app.php'), str_replace(
+            "{$namespace}\\Providers\\RouteServiceProvider::class,".$eol,
+            "{$namespace}\\Providers\\RouteServiceProvider::class,".$eol."        {$namespace}\Providers\InertiaJsServiceProvider::class,".$eol,
+            $appConfig
+        ));
+
+        file_put_contents(app_path('Providers/InertiaJsServiceProvider.php'), str_replace(
+            "namespace App\Providers;",
+            "namespace {$namespace}\Providers;",
+            file_get_contents(app_path('Providers/InertiaJsServiceProvider.php'))
+        ));
     }
 }
