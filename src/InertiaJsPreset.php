@@ -17,7 +17,6 @@ class InertiaJsPreset extends Preset
         static::$command = $command;
 
         static::updatePackages();
-        static::installBootstrapDefault();
         static::updateComposer(false);
         static::updateBootstrapping();
         static::updateWelcomePage();
@@ -85,23 +84,6 @@ class InertiaJsPreset extends Preset
     protected static function scaffoldRoutes()
     {
         copy(__DIR__.'/inertiajs-stubs/routes/web.php', base_path('routes/web.php'));
-    }
-
-    protected static function installBootstrapDefault()
-    {
-        if (! file_exists(base_path('composer.json'))) {
-            return;
-        }
-
-        tap(new Process('composer require --dev laravel/ui=^1.0', base_path()), function ($process) {
-            $process->run();
-
-            Artisan::call('preset bootstrap', [], static::$command->getOutput());
-        });
-
-        tap(new Process('composer remove --dev laravel/ui', base_path()), function ($process) {
-            $process->run();
-        });
     }
 
     protected static function updateComposer($dev = true)
