@@ -1,6 +1,6 @@
 <template>
   <layout>
-    <h1>Welcome</h1>
+    <h1 class="text-2xl font-semibold mb-3">Welcome</h1>
     <p>Welcome to my first Inertia.js app!</p>
   </layout>
 </template>

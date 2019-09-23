@@ -2,8 +2,8 @@
 
 namespace LaravelFrontendPresets\InertiaJsPreset;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Console\PresetCommand;
+use Illuminate\Support\ServiceProvider;
 
 class InertiaJsPresetServiceProvider extends ServiceProvider
 {

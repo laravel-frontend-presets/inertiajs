@@ -1,6 +1,6 @@
 <template>
   <layout>
-    <h1>About</h1>
+    <h1 class="text-2xl font-semibold mb-3">About</h1>
     <p>About my first Inertia.js app!</p>
   </layout>
 </template>
