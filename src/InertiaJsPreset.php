@@ -109,7 +109,7 @@ class InertiaJsPreset extends Preset
         );
     }
 
-    public static function publishServiceProvider()
+    public static function publishInertiaServiceProvider()
     {
         copy(
             __DIR__.'/inertiajs-stubs/providers/InertiaJsServiceProvider.stub',
