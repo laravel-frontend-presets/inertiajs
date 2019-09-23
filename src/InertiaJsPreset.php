@@ -17,7 +17,7 @@ class InertiaJsPreset extends Preset
         static::updatePackages();
         static::updateBootstrapping();
         static::updateComposer(false);
-        static::publishServiceProvider();
+        static::publishInertiaServiceProvider();
         static::registerInertiaServiceProvider();
         static::updateWelcomePage();
         static::updateGitignore();
