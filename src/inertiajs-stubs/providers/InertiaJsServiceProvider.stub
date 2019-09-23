@@ -11,11 +11,6 @@ class InertiaJsServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->registerInertia();
-    }
-
-    protected function registerInertia()
-    {
         Inertia::version(function () {
             return md5_file(public_path('mix-manifest.json'));
         });
