@@ -43,26 +43,26 @@ class InertiaJsPreset extends Preset
 
     protected static function updateBootstrapping()
     {
-        copy(__DIR__ . '/inertiajs-stubs/webpack.mix.js', base_path('webpack.mix.js'));
+        copy(__DIR__.'/inertiajs-stubs/webpack.mix.js', base_path('webpack.mix.js'));
 
-        copy(__DIR__ . '/inertiajs-stubs/resources/js/app.js', resource_path('js/app.js'));
+        copy(__DIR__.'/inertiajs-stubs/resources/js/app.js', resource_path('js/app.js'));
 
-        copy(__DIR__ . '/inertiajs-stubs/resources/sass/app.scss', resource_path('sass/app.scss'));
-        copy(__DIR__ . '/inertiajs-stubs/resources/sass/_nprogress.scss', resource_path('sass/_nprogress.scss'));
+        copy(__DIR__.'/inertiajs-stubs/resources/sass/app.scss', resource_path('sass/app.scss'));
+        copy(__DIR__.'/inertiajs-stubs/resources/sass/_nprogress.scss', resource_path('sass/_nprogress.scss'));
     }
 
     protected static function updateWelcomePage()
     {
         (new Filesystem)->delete(resource_path('views/welcome.blade.php'));
 
-        copy(__DIR__ . '/inertiajs-stubs/resources/views/app.blade.php', resource_path('views/app.blade.php'));
+        copy(__DIR__.'/inertiajs-stubs/resources/views/app.blade.php', resource_path('views/app.blade.php'));
     }
 
     protected static function updateGitignore()
     {
         file_put_contents(
             base_path('.gitignore'),
-            file_get_contents(__DIR__ . '/inertiajs-stubs/gitignore'),
+            file_get_contents(__DIR__.'/inertiajs-stubs/gitignore'),
             FILE_APPEND
         );
     }
@@ -72,20 +72,20 @@ class InertiaJsPreset extends Preset
         tap(new Filesystem, function (Filesystem $fs) {
             $fs->deleteDirectory(resource_path('js/components'));
 
-            $fs->copyDirectory(__DIR__ . '/inertiajs-stubs/resources/js/Shared', resource_path('js/Shared'));
+            $fs->copyDirectory(__DIR__.'/inertiajs-stubs/resources/js/Shared', resource_path('js/Shared'));
 
-            $fs->copyDirectory(__DIR__ . '/inertiajs-stubs/resources/js/Pages', resource_path('js/Pages'));
+            $fs->copyDirectory(__DIR__.'/inertiajs-stubs/resources/js/Pages', resource_path('js/Pages'));
         });
     }
 
     protected static function scaffoldRoutes()
     {
-        copy(__DIR__ . '/inertiajs-stubs/routes/web.php', base_path('routes/web.php'));
+        copy(__DIR__.'/inertiajs-stubs/routes/web.php', base_path('routes/web.php'));
     }
 
     protected static function updateComposer($dev = true)
     {
-        if (!file_exists(base_path('composer.json'))) {
+        if (! file_exists(base_path('composer.json'))) {
             return;
         }
 
@@ -101,14 +101,14 @@ class InertiaJsPreset extends Preset
 
         file_put_contents(
             base_path('composer.json'),
-            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL
+            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT).PHP_EOL
         );
     }
 
     public static function publishInertiaServiceProvider()
     {
         copy(
-            __DIR__ . '/inertiajs-stubs/providers/InertiaJsServiceProvider.stub',
+            __DIR__.'/inertiajs-stubs/providers/InertiaJsServiceProvider.stub',
             app_path('Providers/InertiaJsServiceProvider.php')
         );
     }
@@ -119,7 +119,7 @@ class InertiaJsPreset extends Preset
 
         $appConfig = file_get_contents(config_path('app.php'));
 
-        if (Str::contains($appConfig, $namespace . '\\Providers\\InertiaJsServiceProvider::class')) {
+        if (Str::contains($appConfig, $namespace.'\\Providers\\InertiaJsServiceProvider::class')) {
             return;
         }
 
@@ -132,8 +132,8 @@ class InertiaJsPreset extends Preset
         $eol = array_keys($lineEndingCount, max($lineEndingCount))[0];
 
         file_put_contents(config_path('app.php'), str_replace(
-            "{$namespace}\\Providers\\RouteServiceProvider::class," . $eol,
-            "{$namespace}\\Providers\\RouteServiceProvider::class," . $eol . "        {$namespace}\Providers\InertiaJsServiceProvider::class," . $eol,
+            "{$namespace}\\Providers\\RouteServiceProvider::class,".$eol,
+            "{$namespace}\\Providers\\RouteServiceProvider::class,".$eol."        {$namespace}\Providers\InertiaJsServiceProvider::class,".$eol,
             $appConfig
         ));
 
