@@ -11,8 +11,8 @@
     }
   ],
   "require": {
-    "laravel/framework": "^5.8|^6.0",
-    "inertiajs/inertia-laravel": "^0.1"
+    "laravel/ui": "^2.0",
+    "inertiajs/inertia-laravel": "^0.2"
   },
   "require-dev": {
     "orchestra/testbench": "^3.8"

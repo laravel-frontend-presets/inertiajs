@@ -2,14 +2,14 @@
 
 namespace LaravelFrontendPresets\InertiaJsPreset;
 
-use Illuminate\Foundation\Console\PresetCommand;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Ui\UiCommand;
 
 class InertiaJsPresetServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        PresetCommand::macro('inertiajs', function ($command) {
+        UiCommand::macro('inertiajs', function ($command) {
             InertiaJsPreset::install();
 
             $command->info('Inertia.js scaffolding installed successfully.');

@@ -4,11 +4,8 @@ namespace LaravelFrontendPresets\InertiaJsPreset;
 
 use Illuminate\Container\Container;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Foundation\Console\Presets\Preset;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
-use Symfony\Component\Process\Process;
+use Laravel\Ui\Presets\Preset;
 
 class InertiaJsPreset extends Preset
 {
@@ -40,7 +37,7 @@ class InertiaJsPreset extends Preset
     protected static function updateComposerArray(array $packages)
     {
         return array_merge([
-            'inertiajs/inertia-laravel' => '^0.1',
+            'inertiajs/inertia-laravel' => '^0.2',
         ], $packages);
     }
 
@@ -97,8 +94,7 @@ class InertiaJsPreset extends Preset
         $packages = json_decode(file_get_contents(base_path('composer.json')), true);
 
         $packages[$configurationKey] = static::updateComposerArray(
-            array_key_exists($configurationKey, $packages) ? $packages[$configurationKey] : [],
-            $configurationKey
+            array_key_exists($configurationKey, $packages) ? $packages[$configurationKey] : []
         );
 
         ksort($packages[$configurationKey]);
