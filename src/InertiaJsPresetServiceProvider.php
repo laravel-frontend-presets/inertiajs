@@ -9,7 +9,7 @@ class InertiaJsPresetServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        UiCommand::macro('inertiajs', function (UiCommand $command) {
+        UiCommand::macro('inertiajs', function ($command) {
             InertiaJsPreset::install();
 
             $command->info('Inertia.js scaffolding installed successfully.');

@@ -69,7 +69,7 @@ class InertiaJsPreset extends Preset
 
     protected static function scaffoldComponents()
     {
-        tap(new Filesystem, function (Filesystem $fs) {
+        tap(new Filesystem, function ($fs) {
             $fs->deleteDirectory(resource_path('js/components'));
 
             $fs->copyDirectory(__DIR__.'/inertiajs-stubs/resources/js/Shared', resource_path('js/Shared'));
